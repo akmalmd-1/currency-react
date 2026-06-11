@@ -1,0 +1,210 @@
+/* =========================
+   GLOBAL RESET
+========================= */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: blanchedalmond;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+.container {
+    background-color: black;
+    color: chocolate;
+    padding: 16px;
+    border-radius: 20px;
+
+    width: 100%;
+    max-width: 520px;  
+}
+
+/* =========================
+   HEADER
+========================= */
+.header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.header h2 {
+    margin: 0;
+    color: crimson;
+}
+
+.header p {
+    margin: 5px 0 0;
+    color: chocolate;
+    font-size: 13px;
+}
+
+/* =========================
+   TITLE
+========================= */
+h1 {
+    color: crimson;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* =========================
+   BOX LAYOUT (DESKTOP)
+========================= */
+.box {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+/* LEFT + RIGHT */
+.leftbox,
+.rightbox {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0; 
+}
+
+/* =========================
+   SWAP BUTTON
+========================= */
+.swap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.swap button {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: #ffeba7;
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+.swap button:hover {
+    transform: rotate(180deg);
+}
+
+/* =========================
+   DROPDOWN
+========================= */
+.dropdown {
+    position: relative;
+    width: 100%;
+}
+
+.dropdown-selected {
+    background: cornflowerblue;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    background: white;
+    color: black;
+
+    max-height: 180px;
+    overflow-y: auto;
+
+    border-radius: 10px;
+    z-index: 9999;
+}
+
+/* =========================
+   INPUT
+========================= */
+input {
+    width: 100%;
+    height: 40px;
+    margin-top: 6px;
+    border-radius: 10px;
+    border: none;
+    padding: 0 10px;
+    outline: none;
+}
+
+/* =========================
+   BUTTON
+========================= */
+.btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+button {
+    width: 60%;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background: #ffeba7;
+}
+
+/* =========================
+   📱 MOBILE RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+
+    .container {
+        max-width: 95%;
+        padding: 14px;
+    }
+
+    /* STACK LAYOUT */
+    .box {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    /* SWAP CENTERED BETWEEN STACK */
+    .swap {
+        margin: 5px 0;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+@media (max-width: 420px) {
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .header h2 {
+        font-size: 20px;
+    }
+
+    .dropdown-selected {
+        font-size: 14px;
+    }
+}
