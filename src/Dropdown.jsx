@@ -1,38 +1,52 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
-function Dropdown({ options, selected, onSelect }) {
+function Dropdown({ options = [], selected, onSelect }) {
   const [open, setOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const ref = useRef(null);
 
-  // close on outside click
+  // close on outside click (SAFE VERSION)
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    const handleClickOutside = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) {
         setOpen(false);
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () =>
+    return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
+  const handleSelect = (opt) => {
+    onSelect(opt);
+    setOpen(false);
+  };
+
   return (
-    <div className="dropdown" ref={dropdownRef}>
-      <div className="dropdown-selected" onClick={() => setOpen(!open)}>
+    <div className="dropdown" ref={ref}>
+      {/* selected box */}
+      <div
+        className="dropdown-selected"
+        onClick={(e) => {
+          e.stopPropagation(); // 🔥 IMPORTANT FIX
+          setOpen((prev) => !prev);
+        }}
+      >
         {selected || "Select"}
         <span>▼</span>
       </div>
 
-      {open && (
+      {/* dropdown list */}
+      {open && options.length > 0 && (
         <div className="dropdown-list">
           {options.map((opt) => (
             <div
               key={opt}
               className="dropdown-item"
-              onClick={() => {
-                onSelect(opt);
-                setOpen(false);
+              onClick={(e) => {
+                e.stopPropagation(); // 🔥 IMPORTANT FIX
+                handleSelect(opt);
               }}
             >
               {opt}

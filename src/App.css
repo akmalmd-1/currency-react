@@ -131,7 +131,30 @@ h1 {
     overflow-y: auto;
 
     border-radius: 10px;
-    z-index: 9999;
+
+    z-index: 99999;
+
+    
+    width: 100%;
+    max-width: 100vw;
+}
+
+.container,
+.box,
+.leftbox,
+.rightbox {
+    overflow: visible;
+}
+
+.dropdown {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+}
+
+.dropdown-selected {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 /* =========================
@@ -176,11 +199,20 @@ button {
     }
 
     /* STACK LAYOUT */
+    @media (max-width: 768px) {
     .box {
         flex-direction: column;
-        gap: 12px;
+        gap: 15px;
     }
 
+    .dropdown-list {
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+}
     /* SWAP CENTERED BETWEEN STACK */
     .swap {
         margin: 5px 0;
